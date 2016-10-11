@@ -16,6 +16,8 @@ while code not in ["e","d","q"]:
     code=str(input("Enter e to encrypt, d to decrypt, or q to quit: "))
 if code == "e":
     message=input("Message: ")
+    for x in range (0, len(message)):
+        message[x]=associations.find(message[x])
 if code == "d":
     key=input("Key: ")
 if code == "q":
