@@ -1,6 +1,6 @@
 """
 cryptography.py
-Author: finn
+Author: <your name here>
 Credit: <list sources used, if any>
 
 Assignment:
@@ -11,46 +11,37 @@ See the detailed requirements at https://github.com/HHS-IntroProgramming/Cryptog
 """
 associations = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .,:;'\"/\\<>(){}[]-=_+?!"
 command = input("Enter e to encrypt, d to decrypt, or q to quit: ")
-enumbers = []
-ekeynumbers = []
-enewnumbers = []
+enumlist = []
+ekeynumlist = []
+enewnums = []
 eend = []
-dnumbers = []
-dkeynumbers = []
-dnewnumbers = []
+dnumlist = []
+dkeynumlist = []
+dnewnums = []
 dend = []
-
 while command != "q":
-    
     if command == "e":
         emessage = input("Message: ")
         ekey = input("Key: ")
         eeekey = ekey
-
         while len(ekey) < len(emessage):
             ekey = ekey + eeekey
-
         for x in emessage:
-            enumbers.append(associations.find(x))
+            enumlist.append(associations.find(x))
         for y in ekey:
-            ekeynumbers.append(associations.find(y))
-             
-        ezip = list(zip(enumbers, ekeynumbers)
-        
+            ekeynumlist.append(associations.find(y))
+        ezip = list(zip(enumlist, ekeynumlist))
         for a in ezip:
             if a[0]+a[1] < len(associations):
-                enewnumbes.append(a[0] + a[1])
+                enewnums.append(a[0] + a[1])
             else:
-                enewnumbers.append(a[0] + a[1] - len(associations))
-        
-        for i in enewnumbers:
+                enewnums.append(a[0] + a[1] - len(associations))
+        for i in enewnums:
             eend.append(associations[i])
-            
         print(''.join(eend))
-
-        enumbers = []
-        ekeynumbers = []
-        enewnumbers = []
+        enumlist = []
+        ekeynumlist = []
+        enewnums = []
         eend = []
     if command == "d":
         dmessage = input("Message: ")
@@ -59,33 +50,24 @@ while command != "q":
         while len(dkey) < len(dmessage):
             dkey = dkey + deekey
         for x in dmessage:
-            dnumbers.append(associations.find(x))
-        for y in dnumbers:
-            dkeynumbers.append(associations.find(y))
-             
-        dzip = list(zip(dnumbers, dkeynumbers))
-        
+            dnumlist.append(associations.find(x))
+        for y in dkey:
+            dkeynumlist.append(associations.find(y))
+        dzip = list(zip(dnumlist, dkeynumlist))
         for a in dzip:
             if a[0]-a[1] >= 0:
-                dnewnumbers.append(a[0] - a[1])
+                dnewnums.append(a[0] - a[1])
             else:
-                dnewnumbers.append(a[0] - a[1] + len(associations))
-
+                dnewnums.append(a[0] - a[1] + len(associations))
         for i in dnewnums:
             dend.append(associations[i])
-            
         print(''.join(dend))
-        
-        dnumbers = []
-        dkeynumbers = []
-        dnewnumvers = []
+        dnumlist = []
+        dkeynumlist = []
+        dnewnums = []
         dend = []
-
-    
     if command != "d" and command != "e" and command !="q":
         print("Did not understand command, try again.")
-        
     command = input("Enter e to encrypt, d to decrypt, or q to quit: ")
-
 if command == "q":
     print("Goodbye!")
